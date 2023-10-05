@@ -8,12 +8,12 @@
  *  Return: exits with a given exit status
  *         (0) if info.argv[0] != "exit"
  */
- 
+
 int _exit(info_t *info)
 {
 	int exitcheck;
 
-	if (info->argv[1])  /* If there is an exit arguement */
+	if (info->argv[1]) /* If there is an exit arguement */
 	{
 		exitcheck = _erratoi(info->argv[1]);
 		if (exitcheck == -1)
@@ -30,7 +30,6 @@ int _exit(info_t *info)
 	info->err_num = -1;
 	return (-2);
 }
-
 
 int _cd(info_t *info)
 {
@@ -63,7 +62,7 @@ int _cd(info_t *info)
 		chdir_ret = chdir(info->argv[1]);
 	if (chdir_ret == -1)
 	{
-		print_error(info, "can't cd to ");
+		print_error(info, " Cannot find path");
 		_eputs(info->argv[1]), _eputchar('\n');
 	}
 	else
@@ -73,7 +72,6 @@ int _cd(info_t *info)
 	}
 	return (0);
 }
-
 
 int _help(info_t *info)
 {
