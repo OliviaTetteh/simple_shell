@@ -17,6 +17,8 @@ int main(int ac, char **av)
 		printf("%s", cmd);
 		input_len = getline(&inputptr, &buffsize, stdin);
 
+		token_len = 0;
+
 		if (input_len == -1)
 		{
 			printf("Exiting...\n");
