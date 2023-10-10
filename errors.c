@@ -40,7 +40,7 @@ int _putfd(char a, int fd)
 	static char buffer [1024];
 	if (a == -1 || o >= 1024)
 	{
-		write(2, fd, buffer, o);
+		write(2, buffer, fd, o);
 	}
 	if (a != -1)
 		buffer [o++] = a;
@@ -48,7 +48,7 @@ int _putfd(char a, int fd)
 }
 int _putsfd(char *str, int fd)
 {
-	int b = 0
+	int b = 0;
 	if (str)
 	{
 		while(*str)

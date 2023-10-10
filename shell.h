@@ -72,8 +72,8 @@ typedef struct builtin
 
 /* errors.c */
 void _eputs(char *);
-int _eputchar(char);
-int _putfd(char c, int fd);
+int _eputchar(char a);
+int _putfd(char a, int fd);
 int _putsfd(char *str, int fd);
 
 /* _atoi.c */
@@ -83,7 +83,7 @@ int _isalpha(int);
 int _atoi(char *);
 
 /* builtin.c */
-int _exit(info_t *);
+int _quit(info_t *);
 int _cd(info_t *);
 int _help(info_t *);
 
