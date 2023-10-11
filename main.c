@@ -3,12 +3,12 @@
 int main(int ac, char **av)
 {
 	char *cmd = "$ ";
-	char *inputptr = NULL, *inputptr2nd = NULL;
+	char *inputptr = NULL;
 	size_t buffsize = 32;
 	ssize_t input_len;
 	char *input_token;
 	int j, token_len = 0;
-	const char *delimiter = " ";
+	const char *delimiter = " \n"; // Include newline character as a delimiter
 
 	(void)ac;
 
@@ -20,52 +20,37 @@ int main(int ac, char **av)
 		if (input_len == -1)
 		{
 			printf("Exiting...\n");
+			free(inputptr);
 			exit(1);
 		}
 
-		inputptr2nd = malloc(sizeof(char) * input_len);
-
-		if (inputptr2nd == NULL)
-		{
-			perror("Memory allocation error!");
-			return (-1);
-		}
-
-		strcpy(inputptr2nd, inputptr);
-
-		input_token = strtok(inputptr2nd, delimiter);
+		/* Tokenize the input */
+		char **argv = NULL;
+		char *saveptr = NULL;
+		input_token = strtok_r(inputptr, delimiter, &saveptr);
 
 		while (input_token != NULL)
 		{
 			token_len++;
-			input_token = strtok(NULL, delimiter);
+			argv = realloc(argv, token_len * sizeof(char *));
+			argv[token_len - 1] = strdup(input_token);
+			input_token = strtok_r(NULL, delimiter, &saveptr);
 		}
-		token_len++;
 
-		char **argv = malloc(sizeof(char *) * token_len);
+		argv = realloc(argv, (token_len + 1) * sizeof(char *));
+		argv[token_len] = NULL;
 
-		input_token = strtok(inputptr2nd, delimiter);
-
-		for (j = 0; input_token != NULL; j++)
+		for (j = 0; j < token_len; j++)
 		{
-			argv[j] = malloc(strlen(input_token) + 1); // +1 for the null terminator
-			strcpy(argv[j], input_token);
-			input_token = strtok(NULL, delimiter);
-		}
-		argv[j] = NULL;
-
-		for (int i = 0; i < token_len - 1; i++)
-		{
-			printf("%s, ", argv[i]);
-			free(argv[i]); // Free individual token strings
+			printf("%s, ", argv[j]);
+			free(argv[j]);
 		}
 		printf("\n");
 
-		free(argv); // Free the array of token pointers
+		free(argv);
 	}
 
 	free(inputptr);
-	free(inputptr2nd);
 
 	return (0);
 }
