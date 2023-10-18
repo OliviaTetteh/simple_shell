@@ -2,12 +2,11 @@
 
 /**
  * get_cmd_path - function to find cmd path in sys env
- *@cmd: command
+ * @cmd: command
  * Return: path to the cmd does not exists
  */
 
 char *get_cmd_path(char *cmd)
-char *get_cmd_path(char *cmd);
 {
 	struct stat buffer;
 	const char *paths;
