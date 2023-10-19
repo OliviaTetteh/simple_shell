@@ -1,5 +1,4 @@
 #include "shell.h"
-
 /**
  * get_cmd_path - function to find cmd path in sys env
  * @cmd: command
@@ -13,7 +12,8 @@ char *get_cmd_path(char *cmd)
 	if (paths == NULL || cmd == NULL || *cmd == '\0')
 		return NULL;
 
-	char *p = strtok(strdup(paths), ":"), *file_path;
+	char *p = strtok(strdup(paths), ":");
+	const *file_path;
 	while (p)
 	{
 		file_path = (char *)malloc(strlen(p) + strlen(cmd) + 2);
