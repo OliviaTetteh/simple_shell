@@ -14,8 +14,6 @@
 
 int execute_cmd(char **argv);
 
-char *get_cmd_path(char *cmd);
-
+char *get_cmd_path(const char *cmd);
 
 #endif
-                                                   

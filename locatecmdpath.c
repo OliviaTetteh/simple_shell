@@ -31,8 +31,8 @@ char *get_cmd_path(const char *cmd)
 			free(paths_dup);
 			return (file_path);
 		}
-		free(file_path);  // Free only if not needed
-		file_path = NULL; // Set to NULL to avoid double freeing
+		free(file_path);
+		file_path = NULL;
 		p = strtok(NULL, ":");
 	}
 	free(paths_dup);
