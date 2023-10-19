@@ -8,11 +8,13 @@ char *get_cmd_path(char *cmd)
 {
 	struct stat buffer;
 	const char *paths = getenv("PATH");
+	char *paths_dup = strdup(paths);
+	char *p = strtok(paths_dup, ":");
+	char *file_path;
+
 	if (paths == NULL || cmd == NULL || *cmd == '\0')
 		return (NULL);
 
-	char *p = strtok(strdup(paths), ":");
-	char *file_path;
 	while (p)
 	{
 		file_path = (char *)malloc(strlen(p) + strlen(cmd) + 2);
