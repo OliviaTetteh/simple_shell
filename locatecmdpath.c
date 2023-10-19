@@ -5,6 +5,7 @@
  * Return: path to the cmd does not exists
  */
 char *get_cmd_path(const char *cmd)
+char *get_cmd_path(const char *cmd);
 {
 	struct stat buffer;
 	const char *paths = getenv("PATH");
