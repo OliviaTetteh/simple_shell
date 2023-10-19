@@ -14,7 +14,12 @@ int execute_cmd(char **argv)
 	{
 		cmd = argv[0];
 		path2cmd = get_cmd_path(cmd);
-		if (execve(path2cmd, argv,   NULL) == -1)
+		if (!path2cmd)
+		{
+			path2cmd = cmd;
+		}
+
+		if (execve(path2cmd, argv, NULL) == -1)
 			perror("Error:");
 		return (0);
 	}
