@@ -4,52 +4,42 @@
  * @cmd: command
  * Return: path to the cmd does not exists
  */
-char *get_cmd_path(const char *cmd)
-char *get_cmd_path(const char *cmd);
+char *get_cmd_path(const char *command)
 {
-	struct stat buffer;
-	const char *paths = getenv("PATH");
+	char *path;
 
-	if (paths == NULL || cmd == NULL || *cmd == '\0')
-		return (NULL);
-	char *paths_dup;
-
-	paths_dup = strdup(paths);
-	if (paths_dup == NULL)
+	path = getenv("PATH");
+	if (path == NULL)
 	{
-		perror("Memory allocation error");
 		return (NULL);
 	}
-	char *p, *file_path;
 
-	p = strtok(paths_dup, ":");
-	file_path = NULL;
-	while (p)
+	char *token;
+	char *fullCommandPath = NULL;
+
+	token = strtok(path, ":");
+	while (token != NULL)
 	{
-		size_t len;
+		size_t buffer_size;
 
-		len = strlen(p) + strlen(cmd) + 2;
-		file_path = (char *)malloc(len);
-		if (file_path == NULL)
+		buffer_size = strlen(token) + strlen(command) + 2;
+		fullCommandPath = (char *)malloc(buffer_size);
+		if (fullCommandPath == NULL)
 		{
-			perror("Memory allocation error");
-			free(paths_dup);
-			return (NULL);
+			perror("malloc");
+			exit(1);
 		}
-		strcpy(file_path, p);
-		strcat(file_path, "/");
-		strcat(file_path, cmd);
-		if (stat(file_path, &buffer) == 0)
+
+		strcpy(fullCommandPath, token);
+		strcat(fullCommandPath, "/");
+		strcat(fullCommandPath, command);
+		if (access(fullCommandPath, X_OK) == 0)
 		{
-			free(paths_dup);
-			return file_path;
+			return (fullCommandPath);
 		}
-		free(file_path);
-		file_path = NULL;
-		p = strtok(NULL, ":");
+		free(fullCommandPath);
+		token = strtok(NULL, ":");
 	}
-	free(paths_dup);
-	if (stat(cmd, &buffer) == 0)
-		return (strdup(cmd));
+
 	return (NULL);
 }

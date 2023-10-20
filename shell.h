@@ -12,7 +12,11 @@
 #include <fcntl.h>
 #include <errno.h>
 
+void run_in_interactive_mode();
+
 int execute_cmd(char **argv);
+
+char **tokenize_string(const char *input, int *tokenCount);
 
 char *get_cmd_path(const char *cmd);
 

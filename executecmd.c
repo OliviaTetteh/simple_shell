@@ -1,49 +1,47 @@
 #include "shell.h"
 /**
- * execute_cmd - executes a command
+ * execute_cmd - Function to execute a command using the given tokens
  * @argv: array of arguments
- * Return: -1
+ * @tokenCount: number of tokens
  */
-
-int execute_cmd(char **argv)
+void execute_cmd(char **tokens, int tokenCount)
 {
-	char *cmd, *path2cmd;
+	pid_t child_pid;
+	int status;
 
-	if (argv)
+	child_pid = fork();
+	if (child_pid < 0)
 	{
-		pid_t child_pid;
+		perror("fork");
+		exit(1);
+	}
+	if (child_pid == 0)
+	{
+		char *command = tokens[0];
+		char *fullCommandPath;
 
-		cmd = argv[0];
-		path2cmd = get_cmd_path(cmd);
-
-		if (!path2cmd)
+		fullCommandPath = get_cmd_path(command);
+		if (fullCommandPath == NULL)
 		{
-			path2cmd = cmd;
+			fullCommandPath = command;
 		}
 
-		child_pid = fork();
+		char *args[tokenCount + 1];
 
-		if (child_pid == -1)
+		for (int i = 0; i < tokenCount; i++)
 		{
-			perror("Fork failed");
-			return (-1);
+			args[i] = tokens[i];
 		}
-
-		if (child_pid == 0)
+		args[tokenCount] = NULL;
+		if (execve(fullCommandPath, args, NULL) == -1)
 		{
-			if (execve(path2cmd, argv, NULL) == -1)
-			{
-				perror("Error:");
-				exit(1);
-			}
-		}
-		else
-		{
-			int status;
-			waitpid(child_pid, &status, 0);
-			return (WEXITSTATUS(status));
+			perror("execve"); // Handle errors
+			exit(1);
 		}
 	}
-
-	return (-1);
+	else
+	{
+		waitpid(child_pid, &status, 0);
+		return (WEXITSTATUS(status));
+	}
 }
