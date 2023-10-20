@@ -14,7 +14,7 @@
 
 void run_in_interactive_mode();
 
-int execute_cmd(char **argv);
+void execute_cmd(char **tokens, int tokenCount);
 
 char **tokenize_string(const char *input, int *tokenCount);
 

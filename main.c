@@ -6,7 +6,7 @@
  * Return: 0
  */
 
-int int main(int argc, char **argv)
+int main()
 {
 	if (isatty(STDIN_FILENO))
 	{

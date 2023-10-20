@@ -14,10 +14,9 @@ char *get_cmd_path(const char *command)
 		return (NULL);
 	}
 
-	char *token;
+	char *token = strtok(path, ":");
 	char *fullCommandPath = NULL;
 
-	token = strtok(path, ":");
 	while (token != NULL)
 	{
 		size_t buffer_size;

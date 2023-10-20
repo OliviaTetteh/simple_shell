@@ -5,10 +5,10 @@
 void run_in_interactive_mode()
 {
         char cwd[1024], hostname[1024];
-        char input[100];
         char *username;
         char *input = NULL;
         size_t len = 0;
+        int i;
         ssize_t read;
 
         username = getLogin();
@@ -24,13 +24,12 @@ void run_in_interactive_mode()
         }
 
         int tokenCount;
-        char **tokens;
-        tokens = tokenizeString(input, &tokenCount);
+        char **tokens = tokenizeString(input, &tokenCount);
 
         execute_cmd(tokens, tokenCount); /* Execute the command */
 
         /* Free allocated memory */
-        for (int i = 0; i < tokenCount; i++)
+        for (i = 0; i < tokenCount; i++)
         {
                 free(tokens[i]);
         }
