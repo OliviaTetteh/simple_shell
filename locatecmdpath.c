@@ -40,9 +40,6 @@ char *get_cmd_path(const char *cmd)
 	}
 	free(paths_dup);
 	if (stat(cmd, &buffer) == 0)
-	{
 		return (strdup(cmd));
-	}
-
 	return (NULL);
 }
