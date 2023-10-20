@@ -1,5 +1,4 @@
 #include "shell.h"
-
 /**
  * execute_cmd - executes a command
  * @argv: array of arguments
