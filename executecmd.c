@@ -12,14 +12,17 @@ int execute_cmd(char **argv)
 
 	if (argv)
 	{
+		pid_t child_pid;
+
 		cmd = argv[0];
 		path2cmd = get_cmd_path(cmd);
+
 		if (!path2cmd)
 		{
 			path2cmd = cmd;
 		}
 
-		pid_t child_pid = fork();
+		child_pid = fork();
 
 		if (child_pid == -1)
 		{
