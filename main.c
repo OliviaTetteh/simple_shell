@@ -11,16 +11,9 @@ int main(int argc, char **argv)
 	(void)argc;
 	(void)argv;
 
-	if (isatty(STDIN_FILENO))
+	while (1)
 	{
-		/* code shell is running in interactive mode*/
-		while (1)
-		{
-			run_in_interactive_mode();
-		}
-	}
-	else
-	{
+		run_in_interactive_mode();
 	}
 
 	return (0);
