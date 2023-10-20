@@ -19,9 +19,28 @@ int execute_cmd(char **argv)
 			path2cmd = cmd;
 		}
 
-		if (execve(path2cmd, argv, NULL) == -1)
-			perror("Error:");
-		return (0);
+		pid_t child_pid = fork();
+
+		if (child_pid == -1)
+		{
+			perror("Fork failed");
+			return (-1);
+		}
+
+		if (child_pid == 0)
+		{
+			if (execve(path2cmd, argv, NULL) == -1)
+			{
+				perror("Error:");
+				exit(1);
+			}
+		}
+		else
+		{
+			int status;
+			waitpid(child_pid, &status, 0);
+			return (WEXITSTATUS(status));
+		}
 	}
 
 	return (-1);
