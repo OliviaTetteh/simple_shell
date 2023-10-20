@@ -18,18 +18,25 @@ void run_in_interactive_mode()
         gethostname(hostname, sizeof(hostname));
         printf("%s@%s:%s ", username, hostname, cwd);
         read = getline(&input, &len, stdin);
-
         if (read == -1)
         {
                 perror("getline");
                 free(input);
                 exit(0);
         }
-        if (strcmp(input, "exit") == 0)
-                exit(0);
         else
         {
                 tokens = tokenize_string(input, &tokenCount);
+                if (tokenCount > 0 && strcmp(tokens[0], "exit") == 0)
+                {
+                        free(input);
+                        for (i = 0; i < tokenCount; i++)
+                        {
+                                free(tokens[i]);
+                        }
+                        free(tokens);
+                        exit(0);
+                }
                 execute_cmd(tokens, tokenCount);
                 for (i = 0; i < tokenCount; i++)
                 {
