@@ -26,10 +26,7 @@ void run_in_interactive_mode()
                 exit(0);
         }
         if (strcmp(input, "exit") == 0)
-        {
-                free(tokens);
                 exit(0);
-        }
         else
         {
                 tokens = tokenize_string(input, &tokenCount);
