@@ -11,6 +11,7 @@ void run_in_interactive_mode()
         int i;
         ssize_t read;
         int tokenCount;
+        char **tokens;
 
         username = getlogin();
         getcwd(cwd, sizeof(cwd));
@@ -31,7 +32,7 @@ void run_in_interactive_mode()
         }
         else
         {
-                char **tokens = tokenize_string(input, &tokenCount);
+                tokens = tokenize_string(input, &tokenCount);
                 execute_cmd(tokens, tokenCount);
                 for (i = 0; i < tokenCount; i++)
                 {
