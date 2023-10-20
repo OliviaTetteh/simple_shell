@@ -8,6 +8,7 @@
  */
 
 int main(int ac, char **ar)
+int main(int ac, char **ar);
 {
 	char *cmd = "$ ";
 	char *inputptr = NULL;
