@@ -6,8 +6,11 @@
  * Return: 0
  */
 
-int main()
+int main(int argc, char **argv)
 {
+	(void)argc;
+	(void)argv;
+
 	if (isatty(STDIN_FILENO))
 	{
 		/* code shell is running in interactive mode*/
