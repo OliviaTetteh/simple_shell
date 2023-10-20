@@ -24,7 +24,7 @@ void run_in_interactive_mode()
                 free(input);
                 exit(0);
         }
-        if (tokenCount > 0 && strcmp(tokens[0], "exit") == 0)
+        if (strcmp(input, "exit") == 0)
         {
                 free(tokens);
                 exit(0);
