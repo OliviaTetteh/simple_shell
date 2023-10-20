@@ -10,8 +10,10 @@ void run_in_interactive_mode()
         size_t len = 0;
         int i;
         ssize_t read;
+        int tokenCount;
+        char **tokens = tokenize_string(input, &tokenCount);
 
-        username = getLogin();
+        username = getlogin();
         getcwd(cwd, sizeof(cwd));
         gethostname(hostname, sizeof(hostname));
         printf("%s@%s:%s ", username, hostname, cwd);
@@ -20,11 +22,8 @@ void run_in_interactive_mode()
         if (read == -1)
         {
                 perror("getline");
-                return (1);
+                free(tokens) return (1);
         }
-
-        int tokenCount;
-        char **tokens = tokenizeString(input, &tokenCount);
 
         execute_cmd(tokens, tokenCount); /* Execute the command */
 

@@ -8,6 +8,9 @@ void execute_cmd(char **tokens, int tokenCount)
 {
 	pid_t child_pid;
 	int status;
+	char *command = tokens[0];
+	char *fullCommandPath;
+	char *args[tokenCount + 1];
 
 	child_pid = fork();
 	if (child_pid < 0)
@@ -17,16 +20,11 @@ void execute_cmd(char **tokens, int tokenCount)
 	}
 	if (child_pid == 0)
 	{
-		char *command = tokens[0];
-		char *fullCommandPath;
-
 		fullCommandPath = get_cmd_path(command);
 		if (fullCommandPath == NULL)
 		{
 			fullCommandPath = command;
 		}
-
-		char *args[tokenCount + 1];
 
 		for (int i = 0; i < tokenCount; i++)
 		{

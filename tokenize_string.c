@@ -7,6 +7,8 @@
 char **tokenize_string(const char *input, int *tokenCount)
 {
         char *copy;
+        char **tokens = malloc(20 * sizeof(char *));
+        char *token = strtok(copy, " \t\n");
 
         copy = strdup(input);
         if (copy == NULL)
@@ -15,16 +17,14 @@ char **tokenize_string(const char *input, int *tokenCount)
                 exit(1);
         }
 
-        char **tokens = malloc(20 * sizeof(char *));
         if (tokens == NULL)
         {
                 perror("malloc");
+                free(copy);
                 exit(1);
         }
 
-        char *token = strtok(copy, " \t\n");
         *tokenCount = 0;
-
         while (token != NULL)
         {
                 tokens[*tokenCount] = strdup(token);

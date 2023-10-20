@@ -7,15 +7,12 @@
 char *get_cmd_path(const char *command)
 {
 	char *path;
+	char *token = strtok(path, ":");
+	char *fullCommandPath = NULL;
 
 	path = getenv("PATH");
 	if (path == NULL)
-	{
 		return (NULL);
-	}
-
-	char *token = strtok(path, ":");
-	char *fullCommandPath = NULL;
 
 	while (token != NULL)
 	{
