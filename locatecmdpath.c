@@ -12,7 +12,10 @@ char *get_cmd_path(const char *command)
 
 	path = getenv("PATH");
 	if (path == NULL)
+	{
+		free(fullCommandPath);
 		return (NULL);
+	}
 
 	while (token != NULL)
 	{
