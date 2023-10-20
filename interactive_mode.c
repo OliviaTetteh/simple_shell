@@ -13,6 +13,7 @@ void run_in_interactive_mode(void)
 	char **tokens;
 
 	getcwd(cwd, sizeof(cwd));
+	gethostname(hostname, sizeof(hostname));
 	printf("%s:%s ", hostname, cwd);
 	read = getline(&input, &len, stdin);
 	if (read == -1)

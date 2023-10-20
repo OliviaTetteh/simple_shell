@@ -17,7 +17,7 @@ char *get_cmd_path(const char *command)
 		return (NULL);
 	}
 
-	while (token != NULL)
+	while (token)
 	{
 		size_t buffer_size;
 

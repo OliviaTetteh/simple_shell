@@ -37,6 +37,7 @@ char **tokenize_string(const char *input, int *tokenCount)
 		(*tokenCount)++;
 		token = strtok(NULL, " \t\n");
 	}
-	free(copy);
+	if (copy)
+		free(copy);
 	return (tokens);
 }

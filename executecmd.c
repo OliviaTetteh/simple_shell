@@ -42,6 +42,6 @@ void execute_cmd(char **tokens, int tokenCount)
 		waitpid(child_pid, &status, 0);
 		/* return (WEXITSTATUS(status));*/
 	}
-
-	free(fullCommandPath);
+	if (fullCommandPath)
+		free(fullCommandPath);
 }
