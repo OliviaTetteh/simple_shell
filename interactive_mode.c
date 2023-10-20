@@ -26,11 +26,6 @@ void run_in_interactive_mode()
         }
         if (tokenCount > 0 && strcmp(tokens[0], "exit") == 0)
         {
-                free(input);
-                for (i = 0; i < tokenCount; i++)
-                {
-                        free(tokens[i]);
-                }
                 free(tokens);
                 exit(0);
         }
