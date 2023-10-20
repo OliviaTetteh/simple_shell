@@ -7,36 +7,36 @@
  */
 char **tokenize_string(const char *input, int *tokenCount)
 {
-        char *copy = strdup(input);
-        char **tokens = malloc(20 * sizeof(char *));
-        char *token = strtok(copy, " \t\n");
+	char *copy = strdup(input);
+	char **tokens = malloc(20 * sizeof(char *));
+	char *token = strtok(copy, " \t\n");
 
-        copy = strdup(input);
-        if (copy == NULL)
-        {
-                perror("strdup");
-                exit(1);
-        }
+	copy = strdup(input);
+	if (copy == NULL)
+	{
+		perror("strdup");
+		exit(1);
+	}
 
-        if (tokens == NULL)
-        {
-                perror("malloc");
-                free(copy);
-                exit(1);
-        }
+	if (tokens == NULL)
+	{
+		perror("malloc");
+		free(copy);
+		exit(1);
+	}
 
-        *tokenCount = 0;
-        while (token != NULL)
-        {
-                tokens[*tokenCount] = strdup(token);
-                if (tokens[*tokenCount] == NULL)
-                {
-                        perror("strdup");
-                        exit(1);
-                }
-                (*tokenCount)++;
-                token = strtok(NULL, " \t\n");
-        }
-        free(copy);
-        return (tokens);
+	*tokenCount = 0;
+	while (token != NULL)
+	{
+		tokens[*tokenCount] = strdup(token);
+		if (tokens[*tokenCount] == NULL)
+		{
+			perror("strdup");
+			exit(1);
+		}
+		(*tokenCount)++;
+		token = strtok(NULL, " \t\n");
+	}
+	free(copy);
+	return (tokens);
 }

@@ -5,7 +5,6 @@
 void run_in_interactive_mode(void)
 {
 	char cwd[1024], hostname[1024];
-	char *username;
 	char *input = NULL;
 	size_t len = 0;
 	int i;
@@ -13,10 +12,8 @@ void run_in_interactive_mode(void)
 	int tokenCount;
 	char **tokens;
 
-	username = getlogin();
 	getcwd(cwd, sizeof(cwd));
-	gethostname(hostname, sizeof(hostname));
-	printf("%s@%s:%s ", username, hostname, cwd);
+	printf("%s:%s ", hostname, cwd);
 	read = getline(&input, &len, stdin);
 	if (read == -1)
 	{
