@@ -6,7 +6,7 @@
  */
 char *get_cmd_path(const char *command)
 {
-	char *path;
+	char *path = getenv("PATH");
 	char *token = strtok(path, ":");
 	char *fullCommandPath = NULL;
 

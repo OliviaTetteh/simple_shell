@@ -22,7 +22,8 @@ void run_in_interactive_mode()
         if (read == -1)
         {
                 perror("getline");
-                free(tokens) return (1);
+                free(tokens);
+                return (1);
         }
 
         execute_cmd(tokens, tokenCount); /* Execute the command */

@@ -6,7 +6,7 @@
  */
 char **tokenize_string(const char *input, int *tokenCount)
 {
-        char *copy;
+        char *copy = strdup(input);
         char **tokens = malloc(20 * sizeof(char *));
         char *token = strtok(copy, " \t\n");
 
