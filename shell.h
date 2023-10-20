@@ -12,7 +12,7 @@
 #include <fcntl.h>
 #include <errno.h>
 
-void run_in_interactive_mode();
+void run_in_interactive_mode(void);
 
 void execute_cmd(char **tokens, int tokenCount);
 

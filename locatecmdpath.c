@@ -1,7 +1,7 @@
 #include "shell.h"
 /**
  * get_cmd_path - function to find cmd path in sys env
- * @cmd: command
+ * @command: command
  * Return: path to the cmd does not exists
  */
 char *get_cmd_path(const char *command)

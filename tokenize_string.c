@@ -1,7 +1,8 @@
 #include "shell.h"
 /**
  * tokenize_string - read input from the user and tokenized it
- *
+ *@input: inputted text from user
+ *@tokenCount: integer number of tokens
  * Return: argv of inputs
  */
 char **tokenize_string(const char *input, int *tokenCount)

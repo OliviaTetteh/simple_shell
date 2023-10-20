@@ -1,7 +1,7 @@
 #include "shell.h"
 /**
  * execute_cmd - Function to execute a command using the given tokens
- * @argv: array of arguments
+ * @tokens: array of arguments
  * @tokenCount: number of tokens
  */
 void execute_cmd(char **tokens, int tokenCount)
