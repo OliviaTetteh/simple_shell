@@ -43,5 +43,6 @@ char *get_cmd_path(const char *cmd)
 	{
 		return (strdup(cmd));
 	}
+
 	return (NULL);
 }
