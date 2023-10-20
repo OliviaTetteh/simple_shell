@@ -26,6 +26,8 @@ void execute_cmd(char **tokens, int tokenCount)
 			fullCommandPath = command;
 		}
 
+		check_permission(char &fullCommandPath);
+
 		for (i = 0; i < tokenCount; i++)
 		{
 			args[i] = tokens[i];

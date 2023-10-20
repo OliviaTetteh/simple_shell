@@ -20,4 +20,6 @@ char **tokenize_string(const char *input, int *tokenCount);
 
 char *get_cmd_path(const char *cmd);
 
+void check_permission(char *fullCommandPath);
+
 #endif
