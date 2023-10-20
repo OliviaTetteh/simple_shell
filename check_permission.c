@@ -5,6 +5,7 @@
  */
 void check_permission(char *fullCommandPath)
 {
+	struct stat st;
 
 	if (stat(fullCommandPath, &st) != 0)
 	{
