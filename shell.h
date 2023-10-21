@@ -179,6 +179,10 @@ void *_realloc(void *, unsigned int, unsigned int);
 int bfree(void **);
 
 /* _atoi.c */
+int print_alias(list_t *node);
+
+int set_alias(info_t *info, char *str);
+
 int interactive(info_t *);
 
 int is_delim(char, char *);
@@ -199,18 +203,20 @@ char *convert_number(long int, int, int);
 void remove_comments(char *);
 
 /* _builtin.c */
-int _myexit(info_t *);
+int ocshellexit(info_t *);
 
-int _mycd(info_t *);
+int ocshellcd(info_t *);
 
-int _myhelp(info_t *);
+int ocshellhelp(info_t *);
 
 /* _builtin1.c */
-int _myhistory(info_t *);
+int ocshellhistory(info_t *);
 
-int _myalias(info_t *);
+int ocshellalias(info_t *);
 
 /*_getline.c */
+ssize_t read_buf(info_t *info, char *buf, size_t *i); 
+
 ssize_t get_input(info_t *);
 
 int _getline(info_t *, char **, size_t *);
@@ -227,11 +233,11 @@ void free_info(info_t *, int);
 /* _environ.c */
 char *_getenv(info_t *, const char *);
 
-int _myenv(info_t *);
+int ocshellenv(info_t *);
 
-int _mysetenv(info_t *);
+int ocshellsetenv(info_t *);
 
-int _myunsetenv(info_t *);
+int ocshellunsetenv(info_t *);
 
 int populate_env_list(info_t *);
 
