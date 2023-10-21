@@ -50,9 +50,8 @@ typedef struct liststr
 } list_t;
 
 /**
- *struct passinfo - contains pseudo-arguements to pass into a function,
- *		allowing uniform prototype for function pointer struct
- *@arg: a string generated from getline containing arguements
+ *struct passinfo - uniform prototype for function pointer struct
+ *@arg: a string generated from getline containing
  *@argv: an array of strings generated from arg
  *@path: a string path for the current command
  *@argc: the argument count
@@ -101,7 +100,7 @@ typedef struct passinfo
 	}
 
 /**
- *struct builtin - contains a builtin string and related function
+ *struct builtin - contains a builtin string and function
  *@type: the builtin command flag
  *@func: the function
  */
