@@ -36,8 +36,10 @@ int ocshellexit(info_t *info)
  */
 int ocshellhelp(info_t *info)
 {
+	char *helptext;
+
 	(void)info;
-	char *helptext =
+	helptext =
 	    "OAShell - the ALX Shell prj. "
 	    "The following commands are available:\n"
 	    "  cd       Change the working directory.\n"

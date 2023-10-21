@@ -214,10 +214,14 @@ int ocshellhistory(info_t *);
 
 int ocshellalias(info_t *);
 
+int unset_alias(info_t *info, char *str);
+
 /*_getline.c */
-ssize_t read_buf(info_t *info, char *buf, size_t *i); 
+ssize_t read_buf(info_t *info, char *buf, size_t *i);
 
 ssize_t get_input(info_t *);
+
+ssize_t input_buf(info_t *info, char **buf, size_t *len);
 
 int _getline(info_t *, char **, size_t *);
 
