@@ -1,4 +1,4 @@
-#include "shell.c"
+#include "shell.h"
 
 /**
  * check_chain - checks we should continue chaining based on last status
