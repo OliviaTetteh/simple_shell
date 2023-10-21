@@ -31,7 +31,7 @@
 #define USE_GETLINE 0
 #define USE_STRTOK 0
 
-#define HIST_FILE ".simple_shell_hist"
+#define HIST_FILE ".simple_shell_history"
 #define HIST_MAX 4096
 
 extern char **environ;
@@ -50,7 +50,8 @@ typedef struct liststr
 } list_t;
 
 /**
- *struct passinfo
+ *struct passinfo - contains pseudo-arguements to pass into a function,
+ *		allowing uniform prototype for function pointer struct
  *@arg: a string generated from getline containing arguements
  *@argv: an array of strings generated from arg
  *@path: a string path for the current command
@@ -163,27 +164,6 @@ char *_strncat(char *, char *, int);
 
 char *_strchr(char *, char);
 
-/* _atoi.c */
-int interactive(info_t *);
-
-int is_delim(char, char *);
-
-int _isalpha(int);
-
-int _atoi(char *);
-
-/* _errors1.c */
-
-int _erratoi(char *);
-
-void print_error(info_t *, char *);
-
-int print_d(int, int);
-
-char *convert_number(long int, int, int);
-
-void remove_comments(char *);
-
 /* _tokenizer.c */
 char **strtow(char *, char *);
 
@@ -199,17 +179,37 @@ void *_realloc(void *, unsigned int, unsigned int);
 /* _memory.c */
 int bfree(void **);
 
+/* _atoi.c */
+int interactive(info_t *);
+
+int is_delim(char, char *);
+
+int _isalpha(int);
+
+int _atoi(char *);
+
+/* _errors1.c */
+int _erratoi(char *);
+
+void print_error(info_t *, char *);
+
+int print_d(int, int);
+
+char *convert_number(long int, int, int);
+
+void remove_comments(char *);
+
 /* _builtin.c */
-int ocshellexit(info_t *);
+int _myexit(info_t *);
 
-int ocshellcd(info_t *);
+int _mycd(info_t *);
 
-int ocshellhelp(info_t *);
+int _myhelp(info_t *);
 
 /* _builtin1.c */
-int ocshellhistory(info_t *);
+int _myhistory(info_t *);
 
-int ocshellalias(info_t *);
+int _myalias(info_t *);
 
 /*_getline.c */
 ssize_t get_input(info_t *);
@@ -228,11 +228,11 @@ void free_info(info_t *, int);
 /* _environ.c */
 char *_getenv(info_t *, const char *);
 
-int ocshellenv(info_t *);
+int _myenv(info_t *);
 
-int ocshellsetenv(info_t *);
+int _mysetenv(info_t *);
 
-int ocshellunsetenv(info_t *);
+int _myunsetenv(info_t *);
 
 int populate_env_list(info_t *);
 
